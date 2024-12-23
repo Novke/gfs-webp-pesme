@@ -6,23 +6,22 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class Autor {
+public class Rejting {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Integer ocena;
+    private LocalDate datumOcenjivanja;
 
-    private String ime;
-    private String prezime;
-    private LocalDate datumRodjenja;
+    @ManyToOne(optional = false)
+    private Pesma pesma;
 
-    @OneToMany(mappedBy = "autor")
-    private Set<Pesma> pesme;
-
+    @ManyToOne(optional = false)
+    private Kriticar kriticar;
 }
