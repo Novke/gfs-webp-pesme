@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CreateZanrCmd {
 
-    @NotNull(message = "Nije prosledjen naziv!!")
+    @NotNull(message = "Nije popunjen naziv!!")
     @Size(min = 2, message = "Naziv zanra mora imati minimum 2 slova")
     private String naziv;
 }
