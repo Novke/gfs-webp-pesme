@@ -25,6 +25,7 @@ public class ApiHandler {
     }
     @ExceptionHandler(Exception.class)
     ResponseEntity<ApiException> handleSystemExceptions(Exception ex){
+        log.error("Server error!", ex);
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(new ApiException(ex.getMessage(), LocalDateTime.now()));
