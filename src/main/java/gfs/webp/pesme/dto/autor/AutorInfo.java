@@ -8,6 +8,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 public class AutorInfo {
+    private Long id;
     private String ime;
     private String prezime;
     private LocalDate datumRodjenja;
