@@ -1,12 +1,15 @@
 package gfs.webp.pesme.service;
 
 import gfs.webp.pesme.dto.pesma.CreatePesmaCmd;
+import gfs.webp.pesme.dto.pesma.PesmaDetails;
 import gfs.webp.pesme.dto.pesma.PesmaInfo;
+import gfs.webp.pesme.dto.pesma.UpdatePesmaCmd;
 import gfs.webp.pesme.entity.Autor;
 import gfs.webp.pesme.entity.Pesma;
 import gfs.webp.pesme.exceptions.SysException;
 import gfs.webp.pesme.repository.AutorRepository;
 import gfs.webp.pesme.repository.PesmaRepository;
+import gfs.webp.pesme.validation.PesmaPP;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +26,7 @@ public class PesmaService {
 
     private final PesmaRepository pesmaRepository;
     private final AutorRepository autorRepository;
+    private final PesmaPP pesmaPP;
     private final ModelMapper mapper;
 
     public List<PesmaInfo> getPesme(){
@@ -57,4 +61,13 @@ public class PesmaService {
         pesmaRepository.deleteById(id);
     }
 
+    public PesmaDetails azurirajPesmu(UpdatePesmaCmd cmd) {
+        Pesma pesma = pesmaRepository.findById(cmd.getPesmaId())
+                .orElseThrow(() -> new SysException("Pesma ne postoji! ID = " + cmd.getPesmaId(), 404));
+
+        mapper.map(cmd, pesma);
+        pesmaPP.checkAzuriraj(pesma);
+
+        return mapper.map(pesmaRepository.save(pesma), PesmaDetails.class);
+    }
 }

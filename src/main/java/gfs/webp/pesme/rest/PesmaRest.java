@@ -1,7 +1,9 @@
 package gfs.webp.pesme.rest;
 
 import gfs.webp.pesme.dto.pesma.CreatePesmaCmd;
+import gfs.webp.pesme.dto.pesma.PesmaDetails;
 import gfs.webp.pesme.dto.pesma.PesmaInfo;
+import gfs.webp.pesme.dto.pesma.UpdatePesmaCmd;
 import gfs.webp.pesme.service.PesmaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +31,13 @@ public class PesmaRest {
     @ResponseBody
     PesmaInfo kreirajPesmu(@RequestBody @Valid CreatePesmaCmd cmd){
         return pesmaService.kreirajPesmu(cmd);
+    }
+
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    PesmaDetails azurirajPesmu(@RequestBody @Valid UpdatePesmaCmd cmd){
+        return pesmaService.azurirajPesmu(cmd);
     }
 
     @DeleteMapping("/{id}")
