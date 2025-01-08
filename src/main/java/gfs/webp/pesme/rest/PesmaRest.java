@@ -51,4 +51,11 @@ public class PesmaRest {
     RejtingDetails oceniPesmu(@RequestBody @Valid RatePesmaCmd cmd){
         return pesmaService.oceniPesmu(cmd);
     }
+
+    @DeleteMapping("/rejting/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseBody
+    void obrisiRejting(@PathVariable Long id){
+        pesmaService.obrisiRejting(id);
+    }
 }

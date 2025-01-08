@@ -92,4 +92,10 @@ public class PesmaService {
         rejting.setDatumOcenjivanja(LocalDate.now());
         return mapper.map(rejtingRepository.save(rejting), RejtingDetails.class);
     }
+
+    public void obrisiRejting(Long id) {
+        Rejting rejting = rejtingRepository.findById(id)
+                .orElseThrow(() -> new SysException("Rejting ne postoji! ID = " + id, 404));
+        rejtingRepository.delete(rejting);
+    }
 }
