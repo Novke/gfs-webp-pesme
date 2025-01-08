@@ -1,9 +1,7 @@
 package gfs.webp.pesme.rest;
 
-import gfs.webp.pesme.dto.pesma.CreatePesmaCmd;
-import gfs.webp.pesme.dto.pesma.PesmaDetails;
-import gfs.webp.pesme.dto.pesma.PesmaInfo;
-import gfs.webp.pesme.dto.pesma.UpdatePesmaCmd;
+import gfs.webp.pesme.dto.RejtingDetails;
+import gfs.webp.pesme.dto.pesma.*;
 import gfs.webp.pesme.service.PesmaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -45,5 +43,12 @@ public class PesmaRest {
     @ResponseBody
     void obrisiPesmu(@PathVariable Long id){
         pesmaService.obrisiPesmu(id);
+    }
+
+    @PatchMapping
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    RejtingDetails oceniPesmu(@RequestBody @Valid RatePesmaCmd cmd){
+        return pesmaService.oceniPesmu(cmd);
     }
 }
