@@ -1,6 +1,6 @@
 package gfs.webp.pesme.rest;
 
-import gfs.webp.pesme.dto.RejtingDetails;
+import gfs.webp.pesme.dto.rejting.RejtingDetails;
 import gfs.webp.pesme.dto.pesma.*;
 import gfs.webp.pesme.service.PesmaService;
 import jakarta.validation.Valid;
@@ -22,6 +22,13 @@ public class PesmaRest {
     @ResponseBody
     List<PesmaInfo> getPesme(){
         return pesmaService.getPesme();
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    PesmaPlusRejtingDetails prikaziPesmuIRejtinge(@PathVariable Long id){
+        return pesmaService.prikaziPesmuIRejtinge(id);
     }
 
     @PostMapping

@@ -1,4 +1,4 @@
-package gfs.webp.pesme.dto;
+package gfs.webp.pesme.dto.rejting;
 
 import gfs.webp.pesme.dto.kriticar.KriticarInfo;
 import gfs.webp.pesme.dto.pesma.PesmaInfo;

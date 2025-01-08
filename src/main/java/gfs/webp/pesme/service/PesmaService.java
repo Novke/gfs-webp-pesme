@@ -1,6 +1,6 @@
 package gfs.webp.pesme.service;
 
-import gfs.webp.pesme.dto.RejtingDetails;
+import gfs.webp.pesme.dto.rejting.RejtingDetails;
 import gfs.webp.pesme.dto.pesma.*;
 import gfs.webp.pesme.entity.Autor;
 import gfs.webp.pesme.entity.Kriticar;
@@ -97,5 +97,12 @@ public class PesmaService {
         Rejting rejting = rejtingRepository.findById(id)
                 .orElseThrow(() -> new SysException("Rejting ne postoji! ID = " + id, 404));
         rejtingRepository.delete(rejting);
+    }
+
+    public PesmaPlusRejtingDetails prikaziPesmuIRejtinge(Long id) {
+        Pesma pesma = pesmaRepository.findById(id)
+                .orElseThrow(() -> new SysException("Pesma ne postoji! ID = " + id, 404));
+
+        return mapper.map(pesma, PesmaPlusRejtingDetails.class);
     }
 }
