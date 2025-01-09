@@ -2,7 +2,7 @@ package gfs.webp.pesme.util;
 
 public class PrintUtils {
 
-    private static Integer SIRINA = 150;
+    private static Integer SIRINA = 120;
 
     public static void ispisiCeoRedKarakterom(String text){
         for (int i = 0; i < SIRINA; i++) System.out.print(text);
